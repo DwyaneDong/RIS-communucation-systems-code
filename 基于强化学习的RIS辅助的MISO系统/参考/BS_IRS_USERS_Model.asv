@@ -1,0 +1,15 @@
+function yk = BS_IRS_USERS_Model(phi,G)
+% 该函数为BS-RIS-USERS链路通信模型,此模型为固定信道信息H1（NxM）矩阵和K（user数量）个hk2向量
+% 该模型为RIS辅助的MISO通信系统模型，BS天线数为M，RIS的unit数为N，用户数为K
+% 输入参数：
+%   phi：RIS相移矩阵的对角元素上的ju'zhen
+%   G：波束赋形矩阵
+% 输出参数：
+%   yk：接收信号
+phi_temp = phi;%相移矩阵,为NxN的对角矩阵
+G_temp = G;    %为MxK的波束赋形矩阵
+M = 4;         %天线数量
+N = 200;       %200
+K =16;         %用户数量
+frame= 10000;  %仿真通信的帧数
+yk_temp =zeros(K,1);  %为Kx1的向量
