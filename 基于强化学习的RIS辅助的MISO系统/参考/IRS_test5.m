@@ -5,7 +5,7 @@ load('Tx-RIS(H), RIX-Rx(G), Tx-Rx(D),4-256-16（1次）');
 EbN0= [5:1:25];
 lE=length(EbN0);
 err_ber=zeros(1,lE);
-frame=100000;
+frame=10000;
 M=4;%QPSK调制
 Nt=4;
 Nr=16;
@@ -70,7 +70,7 @@ for i=1:frame
     y=awgn(z,EbN0(m),'measured');% matlab的测量加噪，更逼近实际通信环境
     %----译码以及误码率的计算--------------------
     disp(y)
-    y_h=pinv(Ha+hd1)*y;%求信道状态矩阵的M-P广义逆,进行相位消除；=====这个步骤的意义？？====
+    y_h=pinv(Ha+hd1)*y;%求信道状态矩阵的M-P广义逆,进行相位消除；实际解调过程中不知道信道状态矩阵该怎么办？
     
     y1=pskdemod(y_h,M,pi/4);%相位消除之后再对接收到的信号进行解调；
    
